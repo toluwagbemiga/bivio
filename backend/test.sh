@@ -18,24 +18,24 @@ fi
 
 # Check Python version
 echo "📍 Checking Python version..."
-python3 --version
+python --version
 
 # Create virtual environment if it doesn't exist
-if [ ! -d "venv" ]; then
-    echo ""
-    echo "📦 Creating virtual environment..."
-    python3 -m venv venv
-fi
+# if [ ! -d "venv" ]; then
+#     echo ""
+#     echo "📦 Creating virtual environment..."
+#     python -m venv venv
+# fi
 
 # Activate virtual environment
-echo ""
-echo "🔌 Activating virtual environment..."
-source venv/bin/activate
+# echo ""
+# echo "🔌 Activating virtual environment..."
+# source venv/bin/activate
 
 # Install dependencies
 echo ""
 echo "📥 Installing dependencies..."
-pip install --upgrade pip
+# pip install --upgrade pip
 pip install -r requirements.txt
 
 # Create logs directory
@@ -50,8 +50,8 @@ DEBUG=True
 SECRET_KEY=django-insecure-pos-financial-dev-key-change-in-production
 DATABASE_URL=postgresql://pos_user:pos_password@localhost:5432/pos_financial_db
 DB_NAME=pos_financial_db
-DB_USER=pos_user
-DB_PASSWORD=pos_password
+DB_USER=postgres
+DB_PASSWORD=root
 DB_HOST=localhost
 DB_PORT=5432
 REDIS_URL=redis://localhost:6379/0
@@ -71,8 +71,8 @@ echo ""
 
 # Try to create database (may fail if already exists, that's okay)
 psql -U postgres -c "CREATE DATABASE pos_financial_db;" 2>/dev/null || echo "   Database may already exist, continuing..."
-psql -U postgres -c "CREATE USER pos_user WITH PASSWORD 'pos_password';" 2>/dev/null || echo "   User may already exist, continuing..."
-psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE pos_financial_db TO pos_user;" 2>/dev/null || true
+psql -U postgres -c "CREATE USER postgres WITH PASSWORD 'root';" 2>/dev/null || echo "   User may already exist, continuing..."
+psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE pos_financial_db TO postgres;" 2>/dev/null || true
 
 # Run migrations
 echo ""
