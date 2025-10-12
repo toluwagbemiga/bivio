@@ -5,8 +5,23 @@ Transaction serializers for POS sales and payments
 
 from rest_framework import serializers
 from decimal import Decimal
-from .models import Transaction, TransactionItem
+from .models import Transaction, TransactionItem, TransactionCategory
 from apps.inventory.models import Product
+
+
+class TransactionCategorySerializer(serializers.ModelSerializer):
+    """
+    Serializer for transaction categories
+    """
+    transaction_count = serializers.ReadOnlyField(source='get_transaction_count')
+    
+    class Meta:
+        model = TransactionCategory
+        fields = [
+            'id', 'name', 'category_type', 'description', 'remark_keywords',
+            'is_active', 'transaction_count', 'created_at'
+        ]
+        read_only_fields = ['id', 'transaction_count', 'created_at']
 
 
 class TransactionItemSerializer(serializers.ModelSerializer):

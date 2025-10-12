@@ -46,22 +46,24 @@ class CategoryPredictionRequestSerializer(serializers.Serializer):
         return value.strip()
 
 
-class TrainingDataSerializer(serializers.ModelSerializer):
+class ModelPerformanceSerializer(serializers.ModelSerializer):
     """
-    Serializer for training data management
+    Serializer for AI model performance metrics
     """
-    category_name = serializers.ReadOnlyField(source='category.name')
     
     class Meta:
-        model = TrainingData
+        model = ModelPerformance
         fields = [
-            'id', 'text_input', 'processed_text', 'category', 'category_name',
-            'source', 'language', 'region', 'is_validated', 'validation_score',
-            'usage_count', 'status', 'features', 'created_at'
+            'id', 'model_version', 'model_type', 'accuracy', 'precision',
+            'recall', 'f1_score', 'confusion_matrix', 'class_metrics',
+            'training_samples', 'validation_samples', 'training_time_seconds',
+            'is_deployed', 'deployed_at', 'hyperparameters', 'notes', 'created_at'
         ]
         read_only_fields = [
-            'id', 'category_name', 'processed_text', 'usage_count',
-            'validation_score', 'created_at'
+            'id', 'accuracy', 'precision', 'recall', 'f1_score',
+            'confusion_matrix', 'class_metrics', 'training_samples',
+            'validation_samples', 'training_time_seconds', 'is_deployed',
+            'deployed_at', 'created_at'
         ]
 
 

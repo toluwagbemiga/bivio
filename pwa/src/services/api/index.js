@@ -1,0 +1,10 @@
+// Export all API services
+export { authApi } from './auth'
+export { inventoryApi } from './inventory'
+export { transactionApi } from './transactions'
+export { loanApi } from './loans'
+export { savingsApi } from './savings'
+export { analyticsApi } from './analytics'
+export { aiApi } from './ai'
+export { notificationApi } from './notifications'
+export { default as api } from './base'

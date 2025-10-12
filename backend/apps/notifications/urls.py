@@ -1,20 +1,16 @@
-# backend/apps/notifications/urls.py (UPDATE)
+# backend/apps/notifications/urls.py
 """
-Notification URLs
+URL configuration for notifications
 """
 
-from django.urls import path
-from .views import (
-    NotificationListView, NotificationDetailView, NotificationPreferenceView,
-    mark_notification_read, mark_all_read, unread_count
-)
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import NotificationViewSet, NotificationPreferenceViewSet
+
+router = DefaultRouter()
+router.register(r'notifications', NotificationViewSet)
+router.register(r'preferences', NotificationPreferenceViewSet)
 
 urlpatterns = [
-    path('', NotificationListView.as_view(), name='notification-list'),
-    path('<uuid:pk>/', NotificationDetailView.as_view(), name='notification-detail'),
-    path('<uuid:pk>/mark-read/', mark_notification_read, name='mark-notification-read'),
-    path('mark-all-read/', mark_all_read, name='mark-all-read'),
-    path('unread-count/', unread_count, name='unread-count'),
-    path('preferences/', NotificationPreferenceView.as_view(), name='notification-preferences'),
+    path('', include(router.urls)),
 ]
-
