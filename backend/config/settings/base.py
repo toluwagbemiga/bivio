@@ -56,7 +56,7 @@ LOCAL_APPS = [
     'apps.analytics',
     'apps.ai_categorization',
     'apps.notifications',
-    'apps.agents',
+    'apps.agent',
     'apps.accounting',
 ]
 
