@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center h-16">
           <!-- Logo -->
           <div class="flex items-center">
-            <!-- <img src="logo.svg" alt="Bivio" class="h-8 w-8" /> -->
+            <img src="/logo.svg" alt="Bivio" class="h-8 w-8" />
             <span class="ml-2 text-xl font-bold text-gray-900">Bivio POS</span>
           </div>
           

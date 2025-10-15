@@ -103,7 +103,7 @@ class Transaction(models.Model):
     # Transaction Details
     transaction_number = models.CharField(max_length=50, unique=True)
     transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
-    flow_direction = models.CharField(max_length=10, choices=FLOW_DIRECTION, default='inward', null=False, blank=False)
+    flow_direction = models.CharField(max_length=10, choices=FLOW_DIRECTION)
     
     # Amounts
     subtotal = models.DecimalField(max_digits=15, decimal_places=2, default=0)
@@ -319,7 +319,7 @@ class TransactionItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
     
     # Item details at time of transaction
-    item_name = models.CharField(max_length=200,blank=False)
+    item_name = models.CharField(max_length=200)
     quantity = models.DecimalField(max_digits=10, decimal_places=2)
     unit_price = models.DecimalField(max_digits=15, decimal_places=2)
     unit_cost = models.DecimalField(max_digits=15, decimal_places=2)

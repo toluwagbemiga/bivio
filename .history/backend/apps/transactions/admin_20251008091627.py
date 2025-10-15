@@ -49,17 +49,11 @@ class TransactionAdmin(admin.ModelAdmin):
     )
 
 
-
-
 @admin.register(TransactionItem)
 class TransactionItemAdmin(admin.ModelAdmin):
-    list_display = ['transaction', 'get_product_name', 'quantity', 'unit_price', 'line_total']
+    list_display = ['transaction', 'product_name', 'quantity', 'unit_price', 'line_total']
     list_filter = ['transaction__transaction_date']
-    search_fields = ['product__name', 'transaction__transaction_number']  # Changed from 'product_name'
+    search_fields = ['product_name', 'transaction__transaction_number']
     readonly_fields = ['line_total']
-    
-    def get_product_name(self, obj):
-        """Display the product name from the related Product model"""
-        return obj.product.name if obj.product else 'N/A'
-    get_product_name.short_description = 'Product Name'
-    get_product_name.admin_order_field = 'product__name'  # Allows sorting by product name
+
+

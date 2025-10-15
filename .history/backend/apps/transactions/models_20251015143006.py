@@ -103,7 +103,7 @@ class Transaction(models.Model):
     # Transaction Details
     transaction_number = models.CharField(max_length=50, unique=True)
     transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
-    flow_direction = models.CharField(max_length=10, choices=FLOW_DIRECTION, default='inward', null=False, blank=False)
+    flow_direction = models.CharField(max_length=10, choices=FLOW_DIRECTION, null=False, blank=False)
     
     # Amounts
     subtotal = models.DecimalField(max_digits=15, decimal_places=2, default=0)

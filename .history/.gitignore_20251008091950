@@ -14,7 +14,6 @@ venv/
 env/
 ENV/
 backend_env/
-backend_venv/
 ai_env/
 
 # Django

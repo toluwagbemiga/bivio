@@ -67,23 +67,3 @@ class ModelPerformanceSerializer(serializers.ModelSerializer):
         ]
 
 
-class TrainingDataSerializer(serializers.ModelSerializer):
-    """
-    Serializer for AI training data
-    """
-    category_name = serializers.ReadOnlyField(source='category.name')
-    contributor_name = serializers.ReadOnlyField(source='contributed_by.full_name')
-    
-    class Meta:
-        model = TrainingData
-        fields = [
-            'id', 'text_input', 'processed_text', 'category', 'category_name',
-            'source', 'contributed_by', 'contributor_name', 'language',
-            'is_validated', 'validation_score', 'status', 'metadata',
-            'created_at', 'updated_at'
-        ]
-        read_only_fields = [
-            'id', 'category_name', 'contributor_name', 'processed_text',
-            'created_at', 'updated_at'
-        ]
-
