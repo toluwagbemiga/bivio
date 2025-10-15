@@ -72,6 +72,7 @@ class TransactionViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing POS transactions
     """
+    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -342,6 +343,7 @@ class TransactionItemViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing transaction items
     """
+    queryset = TransactionItem.objects.all()
     serializer_class = TransactionItemSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination

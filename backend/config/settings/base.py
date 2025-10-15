@@ -43,9 +43,9 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_filters',
     'corsheaders',
     'rest_framework.authtoken',
-    'django_filters',
 ]
 
 LOCAL_APPS = [
@@ -182,7 +182,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'utils.pagination.StandardResultsSetPagination',
     'PAGE_SIZE': 20,
     'DEFAULT_FILTER_BACKENDS': [
-        'django_filters.backend.DjangoFilterBackend',
+        'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],

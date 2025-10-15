@@ -32,6 +32,7 @@ class CategoryPredictionViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing AI category predictions
     """
+    queryset = CategoryPrediction.objects.all()
     serializer_class = CategoryPredictionSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -254,6 +255,7 @@ class TrainingDataViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing AI training data
     """
+    queryset = TrainingData.objects.all()
     serializer_class = TrainingDataSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination

@@ -33,6 +33,7 @@ class BusinessMetricsViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing business metrics and performance data
     """
+    queryset = BusinessMetrics.objects.all()
     serializer_class = BusinessMetricsSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -174,6 +175,7 @@ class CashFlowDataViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing cash flow data
     """
+    queryset = CashFlowData.objects.all()
     serializer_class = CashFlowDataSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -306,6 +308,7 @@ class BusinessInsightViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing AI-generated business insights
     """
+    queryset = BusinessInsight.objects.all()
     serializer_class = BusinessInsightSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -377,6 +380,7 @@ class AlertRuleViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing custom alert rules
     """
+    queryset = AlertRule.objects.all()
     serializer_class = AlertRuleSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination

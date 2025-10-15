@@ -29,6 +29,7 @@ class NotificationViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing user notifications
     """
+    queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -205,6 +206,7 @@ class NotificationPreferenceViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing notification preferences
     """
+    queryset = NotificationPreference.objects.all()
     serializer_class = NotificationPreferenceSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination

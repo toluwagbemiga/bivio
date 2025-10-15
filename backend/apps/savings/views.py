@@ -32,6 +32,7 @@ class SavingsAccountViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing savings accounts
     """
+    queryset = SavingsAccount.objects.all()
     serializer_class = SavingsAccountSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -193,6 +194,7 @@ class SavingsTransactionViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing savings transactions
     """
+    queryset = SavingsTransaction.objects.all()
     serializer_class = SavingsTransactionSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -278,6 +280,7 @@ class SavingsGoalViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing savings goals
     """
+    queryset = SavingsGoal.objects.all()
     serializer_class = SavingsGoalSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination

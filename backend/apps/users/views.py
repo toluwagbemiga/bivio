@@ -233,6 +233,7 @@ class BusinessProfileViewSet(viewsets.ModelViewSet):
     """
     ViewSet for business profile management
     """
+    queryset = BusinessProfile.objects.all()
     serializer_class = BusinessProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -303,6 +304,7 @@ class GuarantorViewSet(viewsets.ModelViewSet):
     """
     ViewSet for guarantor management
     """
+    queryset = Guarantor.objects.all()
     serializer_class = GuarantorSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination

@@ -120,6 +120,7 @@ class LoanViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing loan applications and loans
     """
+    queryset = Loan.objects.all()
     serializer_class = LoanSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -347,6 +348,7 @@ class LoanRepaymentViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing loan repayments
     """
+    queryset = LoanRepayment.objects.all()
     serializer_class = LoanRepaymentSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination

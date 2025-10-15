@@ -91,6 +91,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing products with inventory tracking
     """
+    queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -287,6 +288,7 @@ class StockMovementViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing stock movements
     """
+    queryset = StockMovement.objects.all()
     serializer_class = StockMovementSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
