@@ -3,11 +3,22 @@ import { useToast } from 'vue-toastification'
 
 // Create axios instance
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api',
+  baseURL: (() => {
+    // allow overriding via env var (set VUE_APP_API_URL or BASE_API_URL in your build/dev env)
+    const envUrl = process.env.VUE_APP_API_URL || process.env.BASE_API_URL
+    if (envUrl) return envUrl.replace(/\/+$/, '') + '/api'
+
+    // use the current page host so 127.0.0.1 (or container) issues don't break requests from the browser
+    const host = (typeof window !== 'undefined' && window.location && window.location.hostname) || 'localhost'
+    const protocol = (typeof window !== 'undefined' && window.location && window.location.protocol) || 'http:'
+    return `${protocol}//${host}:8000/api`
+  })(),
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  // enable if your backend uses cookies for auth; remove if using token headers only
+  withCredentials: true
 })
 
 // Request interceptor to add auth token
