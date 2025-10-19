@@ -110,11 +110,22 @@
             placeholder="Enter your email"
           />
         </div>
+        <div>
+          <label for="username" class="label">Username</label>
+          <input
+            id="username"
+            v-model="registerForm.username"
+            type="text"
+            required
+            class="input"
+            placeholder="Username"
+          />
+        </div>
 
         <div>
-          <label for="phone" class="label">Phone number</label>
+          <label for="phone_number" class="label">Phone number</label>
           <input
-            id="phone"
+            id="phone_number"
             v-model="registerForm.phone"
             type="tel"
             required
@@ -136,9 +147,9 @@
         </div>
 
         <div>
-          <label for="password_confirmation" class="label">Confirm password</label>
+          <label for="password_confirm" class="label">Confirm password</label>
           <input
-            id="password_confirmation"
+            id="password_confirm"
             v-model="registerForm.password_confirmation"
             type="password"
             required
@@ -215,9 +226,10 @@ const registerForm = reactive({
   first_name: '',
   last_name: '',
   email: '',
-  phone: '',
+  phone_number: '',
+  username:'',
   password: '',
-  password_confirmation: '',
+  password_confirm: '',
   business_name: '',
   accept_terms: false
 })

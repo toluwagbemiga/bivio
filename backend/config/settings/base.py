@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+# Import corsheaders defaults to extend allowed headers if needed
+from corsheaders.defaults import default_headers as CORS_DEFAULT_HEADERS
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -65,6 +67,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # CorsMiddleware must come before CommonMiddleware so it can add the
+    # Access-Control-Allow-* headers to responses early.
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -189,12 +194,27 @@ REST_FRAMEWORK = {
 }
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = config(
-    'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000'
-).split(',')
+# When DEBUG is True, allow all origins for local development ease. In
+# production, configure the CORS_ALLOWED_ORIGINS env var (comma-separated)
+# to explicitly whitelist allowed frontends.
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOWED_ORIGINS = config(
+        'CORS_ALLOWED_ORIGINS',
+        default='http://localhost:3000,http://127.0.0.1:3000'
+    ).split(',')
 
+# Allow cookies / credentials to be sent from the frontend (needed if you
+# use session authentication or send tokens in cookies).
 CORS_ALLOW_CREDENTIALS = True
+
+# Ensure common auth and csrf headers are allowed from the frontend. The
+# package already allows Authorization by default, but adding x-csrftoken
+# ensures fetch/XHR requests that send CSRF tokens are accepted.
+CORS_ALLOW_HEADERS = list(CORS_DEFAULT_HEADERS) + [
+    'x-csrftoken',
+]
 
 # Redis configuration
 REDIS_URL = config('REDIS_URL', default='redis://localhost:6379/0')
